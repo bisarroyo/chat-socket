@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import dotenv from 'dotenv'
 import { createClient } from '@libsql/client'
 
@@ -14,6 +15,13 @@ const server = createServer(app)
 const io = new Server(server, {
   connectionStateRecovery: {}
 })
+
+let corsOptions = {
+  origin: 'http://localhost:5173/',
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
 
 const db = createClient({
   url: 'libsql://nearby-supergran-bisarroyo.turso.io',
