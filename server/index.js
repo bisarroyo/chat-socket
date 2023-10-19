@@ -13,15 +13,18 @@ const port = process.env.PORT ?? 3000
 const app = express()
 const server = createServer(app)
 const io = new Server(server, {
-  connectionStateRecovery: {}
+  connectionStateRecovery: {},
+  cors: {
+    origin: 'http://localhost:5173'
+  }
 })
 
-let corsOptions = {
-  origin: 'http://localhost:5173/',
-  optionsSuccessStatus: 200
-}
+// let corsOptions = {
+//   origin: 'http://localhost:5173/',
+//   optionsSuccessStatus: 200
+// }
 
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
 
 const db = createClient({
   url: 'libsql://nearby-supergran-bisarroyo.turso.io',
