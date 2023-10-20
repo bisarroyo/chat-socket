@@ -19,12 +19,12 @@ const io = new Server(server, {
   }
 })
 
-// let corsOptions = {
-//   origin: 'http://localhost:5173/',
-//   optionsSuccessStatus: 200
-// }
+let corsOptions = {
+  origin: 'http://localhost:5173/',
+  optionsSuccessStatus: 200
+}
 
-// app.use(cors(corsOptions))
+app.use(cors(corsOptions))
 
 const db = createClient({
   url: 'libsql://nearby-supergran-bisarroyo.turso.io',
@@ -60,7 +60,7 @@ io.on('connection', async (socket) => {
     }
     io.emit('chat message', msg, result.lastInsertRowid.toString(), username)
   })
-  // console.log(socket.handshake.auth)
+  console.log(socket.handshake.auth)
 
   if (!socket.recovered) {
     try {
